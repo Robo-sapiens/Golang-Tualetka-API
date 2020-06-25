@@ -1,1 +1,1 @@
-# Golang-Tualetka-API
+# Go-Tualetka-API
