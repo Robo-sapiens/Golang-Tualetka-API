@@ -1,9 +1,12 @@
 package repository
 
-import "github.com/jackc/pgx"
+import (
+	"github.com/jackc/pgx"
+	"main/internal/models"
+)
 
 type Repository interface {
-
+	Register(user *models.User) error
 
 }
 
