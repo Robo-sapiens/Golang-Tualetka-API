@@ -14,7 +14,7 @@ import (
 
 func InitRouter(api *delivery.Handlers) *fasthttprouter.Router {
 	r := fasthttprouter.New()
-	//r.POST("/api/forum/:slug", api.CreateForum)
+	r.POST("/api/registration", api.Register)
 	return r
 }
 
