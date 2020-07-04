@@ -15,4 +15,4 @@ The building project was created by the famous architects  Kirill Illarionov and
 ## Step 3 (init database):
 - copy all from init.sql from internal/initDatabase and paste it in database
 ## Step 4 (run):
-- go run main.go (You can also use nohup for run server like daemon on a VPS)
+- go run main.go (You can also use nohup for run server like a daemon on a VPS)
