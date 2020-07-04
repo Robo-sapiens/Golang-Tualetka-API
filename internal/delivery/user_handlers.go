@@ -6,7 +6,6 @@ import (
 	"main/internal/models"
 	"main/internal/tools/errors"
 	"net/http"
-	"strconv"
 )
 
 
@@ -31,14 +30,9 @@ func (handlers *Handlers) Register(ctx *fasthttp.RequestCtx) {
 }
 
 func (handlers *Handlers) DeleteAccount(ctx *fasthttp.RequestCtx) {
-	ID := ctx.UserValue("id").(string)
-	userID, err := strconv.Atoi(ID)
-	if err != nil {
-		ctx.SetContentType("application/json")
-		response, _:= json.Marshal(err.Error())
-		ctx.Write(response)
-	}
-	err = handlers.usecase.DeleteAccount(userID)
+	user := models.User{}
+	user.UnmarshalJSON(ctx.PostBody())
+	err := handlers.usecase.DeleteAccount(user.ID)
 	switch err {
 	case nil:
 		ctx.SetStatusCode(http.StatusOK)

@@ -18,7 +18,14 @@ func (db *DB) Register(user *models.User) (*models.User, error) {
 
 
 func (db *DB) DeleteAccount(userID int) error {
-	result, err := db.DBConnPool.Exec("DELETE FROM users WHERE id = $1", userID)
+	result, err := db.DBConnPool.Exec("DELETE FROM members WHERE user_id = $1", userID)
+	if err != nil {
+		return err
+	}
+	if result.RowsAffected() == 0 {
+		return errors.MemberNotFound
+	}
+	result, err = db.DBConnPool.Exec("DELETE FROM users WHERE id = $1", userID)
 	if err != nil {
 		return err
 	}

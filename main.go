@@ -15,7 +15,7 @@ import (
 func InitRouter(api *delivery.Handlers) *fasthttprouter.Router {
 	r := fasthttprouter.New()
 	r.PUT("/api/registration", api.Register)
-	r.DELETE("/api/registration/:id", api.DeleteAccount)
+	r.DELETE("/api/registration", api.DeleteAccount)
 	r.PUT("/api/rooms/create", api.CreateRoom)
 	r.DELETE("/api/rooms/create", api.DeleteRoom)
 	r.GET("/api/rooms/:id/about", api.GetInfoAboutRoom)
