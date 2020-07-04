@@ -12,13 +12,13 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS rooms CASCADE;
 CREATE TABLE rooms (
   id    SERIAL PRIMARY KEY NOT NULL,
-  name  CITEXT NOT NULL,
+  name  CITEXT UNIQUE NOT NULL,
   about CITEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS members CASCADE;
 CREATE TABLE members (
-  user_id   INTEGER REFERENCES users(id) NOT NULL,
+  user_id   INTEGER UNIQUE REFERENCES users(id) NOT NULL,
   room_id   INTEGER REFERENCES rooms(id) NOT NULL,
   toilet_paper_count INTEGER,
   pay_ability BOOLEAN DEFAULT TRUE,

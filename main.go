@@ -6,15 +6,25 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/valyala/fasthttp"
 	"log"
-	delivery "main/internal/delivery"
-	repository "main/internal/repository"
+	"main/internal/delivery"
+	"main/internal/repository"
 	"main/internal/usecase"
 )
 
 
 func InitRouter(api *delivery.Handlers) *fasthttprouter.Router {
 	r := fasthttprouter.New()
-	r.POST("/api/registration", api.Register)
+	r.PUT("/api/registration", api.Register)
+	r.DELETE("/api/registration/:id", api.DeleteAccount)
+	r.PUT("/api/rooms/create", api.CreateRoom)
+	r.DELETE("/api/rooms/create", api.DeleteRoom)
+	r.GET("/api/rooms/:id/about", api.GetInfoAboutRoom)
+	r.GET("/api/rooms/:id/who", api.GetWhoBuy)
+	r.PUT("/api/rooms/users", api.AddMemberIntoRoom)
+	r.DELETE("/api/rooms/users", api.DeleteMemberFromRoom)
+	r.POST("/api/rooms/users/papers/add", api.UpdatePaperToilet)
+	r.POST("/api/rooms/users/valuable", api.ChangeValuable)
+	r.POST("/api/rooms/users/pay_abilities", api.ChangePayAbility)
 	return r
 }
 
@@ -45,8 +55,8 @@ func main() {
 	api := initLevels()
 	router := InitRouter(api)
 
-	log.Println("http server started on 5000 port: ")
-	err := fasthttp.ListenAndServe(":5000", router.Handler)
+	log.Println("http server started on 8080 port: ")
+	err := fasthttp.ListenAndServe(":8080", router.Handler)
 	if err != nil {
 		log.Println(err)
 		return
