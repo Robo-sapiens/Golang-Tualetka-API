@@ -16,3 +16,5 @@ The building project was created by the famous architects  Kirill Illarionov and
 - copy all from init.sql from internal/initDatabase and paste it in database
 ## Step 4 (run):
 - go run main.go (You can also use nohup for run server like a daemon on a VPS)
+
+## Server works on :8080 port
