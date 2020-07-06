@@ -228,10 +228,29 @@
 		{
 			"name": "ChangePayAbility",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userID\" : 1,\n    \"roomID\" : 1,\n    \"payAbility\" : false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": ""
+					"raw": "localhost:8080/api/rooms/users/pay_abilities",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"rooms",
+						"users",
+						"pay_abilities"
+					]
 				}
 			},
 			"response": []
